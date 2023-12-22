@@ -2,26 +2,936 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+/* Sistema claro */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    /* primarios */
+    --color-Blanco: #f8f8ec;
+    --color-Negro: #020410;
+    --color1: #c15ac4;
+    --color2: #54d3f3;
+    --Colo1-rgb: 248, 248, 236;
+    --Colo2-rgb: 248, 248, 236;
+
+    /* Colores Dark */
+    --color-500: #3a4065;
+    --color-600: #1f243e;
+    --color-700: #191d32;
+    --color-800: #0e1121;
+
+    /* Colores White */
+    /* --color-500-white: #f8f8ec;
+    --color-600-white: #6dc7e9;
+    --color-700-white: #191d32;
+    --color-800-white: #0e1121; */
+
+    --primary-100: #2a9d8f;
+    --primary-200: #008073;
+    --primary-300: #004238;
+    --accent-100: #e9c46a;
+    --accent-200: #826609;
+    --text-100: #264653;
+    --text-200: #52717f;
+    --bg-100: #f8f8ec;
+    --bg-200: #eeeee2;
+    --bg-300: #c5c5ba;
+
+    --Scrollbar-thumb-Color: var(--color2);
+    --Degradado-Color-1: var(--color1);
+    --Degradado-Color-2: var(--color2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Cambio con el switch */
+.dark {
+    --Secciones-Header: var(--color-700);
+    --color-Body: var(--color-700);
+    --Menu-Desplegable-Color: var(--color-700);
+    --Secciones-Color: var(--color-700);
+    --color-Texto: var(--color-Blanco);
+
+    --color-Texto-Fondo: var(--color-Negro);
+    --color-Texto-Opuesto: var(--color-Negro);
+    --color-Texto-Fondo: var(--primary-300);
+    --color-Texto-Buscar: var(--color-Blanco);
+
+    --color-Fondo-Texto: var(--color-Blanco);
+    ---Degradado-Color-1: #776aa933;
+    ---Degradado-Color-2: #191d3233;
+    --Scrollbar-Color: var(--color-700);
+    ---Contedor-Degradado-Color-1: var(--color1);
+    ---Contedor-Degradado-Color-2: var(--color-700);
+    ---Contedor-Degradado-Hijo-Color-2: var(--color-700);
+    --Texto-Color: var(--color-Blanco);
+    --Total-Icono-Carrito: var(--color-Blanco);
+    --Planta-Color: var(--color-Blanco);
+    --Separador-Color: var(--color-Blanco);
+    --Tarjeta-Color: var(--color-600);
+    --Carrito-Color: var(--color-700);
+
+    --Desplegable-Categoria: var(--color-700);
+
+    --Buscar-Color-Borde: #0d9eb8c7;
+    --Texto-Categorias-Hover: #0d9eb8c7;
+    --Efecto-Categorias: #0d9eb8c7;
+    --Icono-Carrito: #0d9eb8c7;
+    --Icono-Carrito-Hover: #0d9eb8c7;
+    --Separador-Color-Hover: #0d9eb8c7;
+    --Separador-Lineas: #0d9eb8c7;
+    --Corazon-Color: #d26698;
+    --Transparente: #da0d0d00;
+    --Transparente2: #0000009f;
 }
+.light {
+    --Secciones-Header: var(--bg-100);
+    --color-Body: var(--bg-100);
+    --Secciones-Color: var(--bg-100);
+    --Menu-Desplegable-Color: var(--bg-100);
+    --color-Texto: var(--primary-300);
+    --color-Texto-Opuesto: var(--bg-100);
+    --color-Texto-Buscar: var(--primary-300);
+    --color-Texto-Fondo: var(--primary-300);
+    --color-Fondo-Texto: #555458;
+    ---Degradado-Color-1: #776aa942;
+    ---Degradado-Color-2: #f4f4f433;
+    --Scrollbar-Color: var(--bg-100);
+    ---Contedor-Degradado-Color-1: var(--color1);
+    ---Contedor-Degradado-Color-2: var(--bg-100);
+    ---Contedor-Degradado-Hijo-Color-2: var(--bg-100);
+    --Texto-Color: var(--color-Blanco-white);
+    --Total-Icono-Carrito: var(--color-Blanco-white);
+    --Planta-Color: var(--color-Blanco-white);
+    --Separador-Color: var(--color--white);
+    --Tarjeta-Color: var(--bg-100);
+    --Degradado-Color-1: var(--color1);
+    --Degradado-Color-2: var(--color2);
+    --Carrito-Color: var(--bg-100);
+
+    --Desplegable-Categoria: var(--bg-100);
+
+    --Buscar-Color-Borde: var(--primary-200);
+    --Texto-Categorias-Hover: var(--primary-200);
+    --Efecto-Categorias: var(--primary-200);
+    --Icono-Carrito: var(--primary-200);
+    --Icono-Carrito-Hover: var(--primary-200);
+    --Separador-Color-Hover: var(--primary-200);
+    --Separador-Lineas: var(--primary-200);
+    --Corazon-Color: #d26698;
+    --Transparente: #da0d0d00;
+    --Transparente2: #0000009f;
+}
+
+/* Sistema claro */
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --color1: #d16698;
+        --color2: #f5d287;
+
+        --Colo1-rgb: 39, 39, 37;
+        --Colo2-rgb: 39, 39, 37;
+
+        --Secciones-Color: #000000ad;
+        --Carrito-Color: #252525;
+        --Menu-Desplegable-Color: #000000;
+
+        --Buscar-Color-Borde: #075563b4;
+
+        --Texto-Color: #ffffffb4;
+        --Texto-Categorias-Hover: #075563b4;
+        --Efecto-Categorias: #075563b4;
+
+        --Total-Icono-Carrito: #ffffff;
+        --Icono-Carrito: #075563b4;
+        --Icono-Carrito-Hover: #219626;
+
+        --Planta-Color: #ffffffc7;
+
+        --Separador-Color: #ffffffb4;
+        --Separador-Color-Hover: #075563b4;
+        --Separador-Lineas: #075563b4;
+
+        --Tarjeta-Color: #00000041;
+        --Degradado-Color-1: var(--color1);
+        --Degradado-Color-2: var(--color2);
+        --Corazon-Color: #d26698;
+        --Transparente: #ffffff00;
+        --Transparente2: #0000009f;
+
+        --Scrollbar-Color: #f4d186;
+        --Scrollbar-thumb-Color: #d266999d;
+    }
+} */
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    background: linear-gradient(
+        90deg,
+        rgba(var(--Colo1-rgb)) 5%,
+        rgba(var(--Colo2-rgb)) 50%
+    );
+
+    /* background-color: #f8f8ec;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ececec' fill-opacity='0.76' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E"); */
+
+    /* background-size: cover; */
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background: var(--Scrollbar-Color);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--Scrollbar-thumb-Color);
+    border-radius: 5px;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+#ScrollMenu::-webkit-scrollbar {
+    width: 0rem;
+    background: transparent;
+}
+
+#ScrollMenu::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+}
+
+#ScrollProducto::-webkit-scrollbar {
+    width: 10px;
+    background: var(--Transparente);
+}
+
+#ScrollProducto::-webkit-scrollbar-thumb {
+    background: var(--Separador-Lineas);
+    border-radius: 5px;
+}
+
+/* #ScrollMenu:hover::-webkit-scrollbar-thumb{
+  background: rgba(115, 125, 128, 0.76);
+} */
+/* #ScrollMenu:hover::-webkit-scrollbar{
+  width: 10px;
+} */
+
+/* Menu */
+
+.Grilla-nav {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 7% calc(93% - 20px);
+
+    /* align-content: space-between; */
+}
+
+.Contenedor-Menu-Vertical {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 0.5rem;
+    padding: 0.5rem 0rem;
+}
+
+@media (min-width: 1024px) {
+    .Contenedor-Menu-Vertical {
+        display: grid;
+        grid-template-columns: 20% auto;
+    }
+}
+
+.Grilla_Tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 10px;
+}
+
+/* boton */
+.button {
+    font-size: 18px;
+    color: var(--Texto-Color);
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+}
+
+.button:focus,
+.button:hover {
+    color: var(--Texto-Categorias-Hover);
+}
+
+.button:focus:after,
+.button:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+.button:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: var(--Efecto-Categorias);
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+
+/* Boton Carrito */
+
+.btn-cart {
+    /* display: flex;
+  align-items: center;
+  justify-content: center; */
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+.btn-cart::after {
+    content: attr(data-quantity);
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--Total-Icono-Carrito);
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s linear;
+    top: 0%;
+}
+
+.icon-cart {
+    width: 24.38px;
+    height: 30.52px;
+    transition: 0.2s linear;
+}
+
+.icon-cart path {
+    fill: var(--Icono-Carrito);
+    transition: 0.2s linear;
+}
+
+.btn-cart:hover > .icon-cart {
+    transform: scale(1.2);
+}
+
+.btn-cart:hover > .icon-cart path {
+    fill: var(--Icono-Carrito-Hover);
+}
+
+.btn-cart:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 40%;
+}
+
+.quantity {
+    display: none;
+}
+
+.saltar:hover {
+    animation: jello-horizontal 0.9s linear both;
+    opacity: 1;
+}
+@keyframes jello-horizontal {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.vibrar:hover {
+    /* cursor: pointer; */
+    animation: vibrate 0.4s linear both;
+}
+@keyframes vibrate {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Card productos */
+
+.card-productos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 150px;
+    min-width: 150px;
+}
+
+.card_box {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    background-color: var(--Tarjeta-Color);
+    position: relative;
+}
+
+.Degradado {
+    background: linear-gradient(
+        90deg,
+        var(--Degradado-Color-1) 0%,
+        var(--Degradado-Color-2) 100%
+    );
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+.gradiente-borde {
+    background: linear-gradient(
+        90deg,
+        var(--Degradado-Color-1) 0%,
+        var(--Degradado-Color-2) 100%
+    );
+}
+
+/* Corazon */
+
+.heart-container {
+    --heart-color: var(--Corazon-Color);
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: 0.3s;
+}
+
+.heart-container .checkbox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.heart-container .svg-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart-container .svg-outline,
+.heart-container .svg-filled {
+    fill: var(--heart-color);
+    position: absolute;
+}
+
+.heart-container .svg-filled {
+    animation: keyframes-svg-filled 1s;
+    display: none;
+}
+
+.heart-container .svg-celebrate {
+    position: absolute;
+    animation: keyframes-svg-celebrate 0.5s;
+    animation-fill-mode: forwards;
+    display: none;
+    stroke: var(--heart-color);
+    fill: var(--heart-color);
+    stroke-width: 2px;
+}
+
+.heart-container .checkbox:checked ~ .svg-container .svg-filled {
+    display: block;
+}
+
+.heart-container .checkbox:checked ~ .svg-container .svg-celebrate {
+    display: block;
+}
+
+@keyframes keyframes-svg-filled {
+    0% {
+        transform: scale(0);
+    }
+
+    25% {
+        transform: scale(1.2);
+    }
+
+    50% {
+        transform: scale(1);
+        filter: brightness(1.5);
+    }
+}
+
+@keyframes keyframes-svg-celebrate {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* Swiper */
+.swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* Tarjetas */
+.mySwiperTarjetas {
+    height: 130px;
+}
+.mySwiperTarjetas .swiper-pagination {
+    --swiper-pagination-color: var(--color2);
+    --swiper-pagination-bullet-size: 10px;
+    --swiper-pagination-bullet-inactive-color: var(--color1);
+    --swiper-pagination-bullet-inactive-opacity: 0.25;
+    --swiper-pagination-bullet-opacity: 0.8;
+    --swiper-pagination-bullet-horizontal-gap: 2px;
+
+    /* --swiper-pagination-top: 90%; */
+}
+.mySwiperTarjetas .swiper-button-prev,
+.mySwiperTarjetas .swiper-button-next {
+    --swiper-navigation-size: 40px;
+    --swiper-theme-color: var(--Buscar-Color-Borde);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(90deg, #d2669962 5%, #87e5f562 50%),
+        url("/assets/wilcom/Banner.png") no-repeat center;
+    background-size: cover;
+}
+
+/* Spinner */
+
+.loader {
+    width: 80px;
+    height: 50px;
+    position: relative;
+}
+
+.loader-text {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    color: black;
+    animation: text_713 3.5s ease both infinite;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+/* #3b83f6d5 0%, #6365f1d7 100%); */
+.load {
+    background-color: #4b4ee0;
+    border-radius: 50px;
+    display: block;
+    height: 16px;
+    width: 16px;
+    bottom: 0;
+    position: absolute;
+    transform: translateX(64px);
+    animation: loading_713 3.5s ease both infinite;
+}
+
+.load::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #6365f1d7;
+    border-radius: inherit;
+    animation: loading2_713 3.5s ease both infinite;
+}
+
+@keyframes text_713 {
+    0% {
+        letter-spacing: 1px;
+        transform: translateX(0px);
+    }
+
+    40% {
+        letter-spacing: 2px;
+        transform: translateX(26px);
+    }
+
+    80% {
+        letter-spacing: 1px;
+        transform: translateX(32px);
+    }
+
+    90% {
+        letter-spacing: 2px;
+        transform: translateX(0px);
+    }
+
+    100% {
+        letter-spacing: 1px;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes loading_713 {
+    0% {
+        width: 16px;
+        transform: translateX(0px);
+    }
+
+    40% {
+        width: 100%;
+        transform: translateX(0px);
+    }
+
+    80% {
+        width: 16px;
+        transform: translateX(64px);
+    }
+
+    90% {
+        width: 100%;
+        transform: translateX(0px);
+    }
+
+    100% {
+        width: 16px;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes loading2_713 {
+    0% {
+        transform: translateX(0px);
+        width: 16px;
+    }
+
+    40% {
+        transform: translateX(0%);
+        width: 80%;
+    }
+
+    80% {
+        width: 100%;
+        transform: translateX(0px);
+    }
+
+    90% {
+        width: 80%;
+        transform: translateX(15px);
+    }
+
+    100% {
+        transform: translateX(0px);
+        width: 16px;
+    }
+}
+
+/* Contenedor del Carrito */
+
+.Borde_Degradado {
+    padding: 0.3rem;
+
+    background: linear-gradient(
+        90deg,
+        var(---Degradado-Color-1) 0%,
+        var(---Degradado-Color-2) 100%
+    );
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+.Grilla_Carrito {
+    display: grid;
+    grid-template-columns: 15% auto 5%;
+
+    justify-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .Grilla_Carrito {
+        display: grid;
+        grid-template-columns: 25% auto 5%;
+    }
+}
+
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+    color: var(--Texto-Color);
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+    color: var(--Texto-Color);
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border-color: var(--Texto-Color);
+}
+.css-15jws13-MuiFormLabel-root-MuiInputLabel-root {
+    color: var(--Texto-Color);
+}
+.css-rw1vm2-MuiInputBase-root-MuiOutlinedInput-root {
+    color: var(--Texto-Color);
+}
+
+.EfectoCategoria {
+    animation: bajar 1s ease;
+}
+
+@keyframes bajar {
+    0% {
+        height: 0px;
+    }
+
+    100% {
+        height: 100svh;
+    }
+}
+
+.Fondo-Degradado {
+    border-radius: 2rem;
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        var(---Degradado-Color-1) 0%,
+        var(---Degradado-Color-2) 100%
+    );
+}
+
+.Contenedor-Degradado {
+    background: linear-gradient(
+        180deg,
+        var(---Contedor-Degradado-Color-1),
+        var(---Contedor-Degradado-Color-2)
+    );
+    padding: 0.3rem;
+    padding-bottom: 0rem;
+    border-radius: 2rem 2rem 0px 0px;
+    position: relative;
+}
+
+.Contenedor-Degradado-Hijo {
+    background: var(---Contedor-Degradado-Hijo-Color-2);
+    border-radius: 2rem 2rem 0px 0px;
+}
+
+.Contenedor-Degradado-Tarjeta {
+    /* background: var(--color1); */
+    padding: 0.3rem;
+    border-radius: 2rem;
+}
+
+.Contenedor-Degradado-Tarjeta-Hijo {
+    height: 100%;
+    width: 100%;
+    border-radius: 2rem;
+    position: relative;
+}
+
+.Tarjeta_C {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 2rem;
+}
+
+.Grid-Contactanos {
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 2rem;
+}
+
+.Grid-Contactanos-Hijo {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 2rem;
+
+    place-content: center;
+
+    border-radius: 2rem;
+
+    padding: 1rem;
+}
+
+@media (max-width: 650px) {
+    .Grid-Contactanos-Hijo {
+        grid-template-columns: 100%;
+        padding: 1rem 0rem 1rem 0rem;
+    }
+}
+
+.gradient-text {
+    background-image: linear-gradient(45deg, var(--color1), var(--color2));
+    background-color: var(--color-700);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.grilla-productos-carrito {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    place-content: center;
+
+    gap: 1rem;
+}
+
+@media (max-width: 650px) {
+    .grilla-productos-carrito {
+        grid-template-columns: 100%;
+    }
+}
+
+/* Switch */
+/* The switch - the box around the slider */
+#theme-toggle-button {
+    font-size: 0.5rem;
+    position: relative;
+    width: 5em;
+    cursor: pointer;
+
+    /* display: inline-block; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hide default HTML checkbox */
+#toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#container,
+#patches,
+#stars,
+#button,
+#sun,
+#moon,
+#cloud {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.25s;
+}
+
+/* night sky background */
+#toggle:checked + svg #container {
+    fill: #2b4360;
+}
+
+/* move button to right when checked */
+#toggle:checked + svg #button {
+    transform: translate(28px, 2.333px);
+}
+
+/* show/hide sun and moon based on checkbox state */
+#sun {
+    opacity: 1;
+}
+
+#toggle:checked + svg #sun {
+    opacity: 0;
+}
+
+#moon {
+    opacity: 0;
+}
+
+#toggle:checked + svg #moon {
+    opacity: 1;
+}
+
+/* show or hide background items on checkbox state */
+#cloud {
+    opacity: 1;
+}
+
+#toggle:checked + svg #cloud {
+    opacity: 0;
+}
+
+#stars {
+    opacity: 0;
+}
+
+#toggle:checked + svg #stars {
+    opacity: 1;
+}
+
+.Masonry_Productos {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-items: center;
+    align-items: center;
+
+    gap: 1rem;
 }
