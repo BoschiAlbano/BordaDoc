@@ -1,0 +1,5 @@
+
+Tipos de datos:
+
+datos: DatosFormularioContacto;
+setDatos: React.Dispatch<React.SetStateAction<DatosFormularioContacto>>;

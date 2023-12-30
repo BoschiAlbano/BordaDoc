@@ -84,7 +84,7 @@ export async function fetchGetProductos(): Promise<producto[]> {
 }
 
 export async function fetchGetByCadena(cadena: string): Promise<producto[]> {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const buscar: producto[] = ProdutosDB.filter((item) =>
         item.titulo.toLowerCase().includes(cadena.toLowerCase())

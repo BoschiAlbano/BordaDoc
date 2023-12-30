@@ -26,32 +26,28 @@ export default function Providers({
         <>
             <ApiContextProvider>
                 <FavoritosContextProvider>
-                    <Menu categorias={categorias}>
-                        <div className=" h-full w-full flex flex-col items-center relative bg-[--color-Body]">
-                            {/* Contenido */}
-                            {children}
+                    {/* Menu */}
+                    <Menu categorias={categorias}></Menu>
 
-                            <Opacidad>
-                                {/* Footer */}
-                                <div className="mt-4 w-[100%] shadow-lg overflow-hidden">
-                                    <Footer categorias={categorias} />
-                                </div>
-                            </Opacidad>
-                        </div>
-                    </Menu>
+                    <div className=" h-full w-full flex flex-col items-center relative bg-[--color-Body]">
+                        {/* Contenido */}
+                        {children}
+
+                        {/* Footer */}
+                        <Opacidad>
+                            {/* Footer */}
+                            <div className="mt-4 w-[100%] shadow-lg overflow-hidden">
+                                <Footer categorias={categorias} />
+                            </div>
+                        </Opacidad>
+                    </div>
                 </FavoritosContextProvider>
             </ApiContextProvider>
         </>
     );
 }
 
-const Menu = ({
-    children,
-    categorias,
-}: {
-    children: React.ReactNode;
-    categorias: categoria[];
-}) => {
+const Menu = ({ categorias }: { categorias: categoria[] }) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
 
     const MenuRef = useRef<HTMLInputElement | null>(null);
@@ -102,70 +98,70 @@ const Menu = ({
     return (
         <div>
             <header className={` fixed w-full z-20`}>
-                <Opacidad>
-                    <div
-                        className={`${
-                            transparente ? "opacity-[1]" : "opacity-[0.9]"
-                        } sm:w-[100%] w-full`}
-                    >
-                        <div className="flex flex-col justify-center items-center">
-                            <div className="h-[80px] w-[100%] flex  lg:justify-between justify-center items-center relative bg-[--Secciones-Header]">
-                                {/* Logo */}
-                                <section className="lg:flex hidden h-full">
-                                    <div className="h-full flex justify-normal items-center pl-5">
-                                        <Link
-                                            href={`/`}
-                                            className=" cursor-pointer"
-                                        >
-                                            <img
-                                                className="w-[200px]"
-                                                src="/assets/wilcom/Logo.png"
-                                                alt="BORDA.Doc"
-                                            />
-                                        </Link>
-                                    </div>
-                                </section>
-
-                                {/* Icono Menu */}
-                                <div className="lg:hidden  left-0 px-2 z-[200] h-full flex justify-center items-center">
-                                    <button
-                                        className="text-[--Texto-Color]"
-                                        onClick={() =>
-                                            setOpenMenu((openMenu) => !openMenu)
-                                        }
+                {/* <Opacidad> */}
+                <div
+                    className={`${
+                        transparente ? "opacity-[1]" : "opacity-[0.9]"
+                    } sm:w-[100%] w-full`}
+                >
+                    <div className="flex flex-col justify-center items-center">
+                        <div className="h-[80px] w-[100%] flex  lg:justify-between justify-center items-center relative bg-[--Secciones-Header]">
+                            {/* Logo */}
+                            <section className="lg:flex hidden h-full">
+                                <div className="h-full flex justify-normal items-center pl-5">
+                                    <Link
+                                        href={`/`}
+                                        className=" cursor-pointer"
                                     >
-                                        {/* <MenuIcon sx={{ fontSize: 35 }} /> */}
-                                        <TiThMenu />
-                                    </button>
+                                        <img
+                                            className="w-[200px]"
+                                            src="/assets/wilcom/Logo.png"
+                                            alt="BORDA.Doc"
+                                        />
+                                    </Link>
+                                </div>
+                            </section>
+
+                            {/* Icono Menu */}
+                            <div className="lg:hidden  left-0 px-2 z-[200] h-full flex justify-center items-center">
+                                <button
+                                    className="text-[--Texto-Color]"
+                                    onClick={() =>
+                                        setOpenMenu((openMenu) => !openMenu)
+                                    }
+                                >
+                                    {/* <MenuIcon sx={{ fontSize: 35 }} /> */}
+                                    <TiThMenu />
+                                </button>
+                            </div>
+
+                            {/* Buscar y Carrito */}
+                            <div className="h-full flex flex-row justify-center items-center ">
+                                {/* formulario */}
+                                <FormBuscar />
+                                {/* Boton Carrito */}
+                                <Carrito />
+                            </div>
+
+                            {/* Categorias, Contactanos */}
+                            <div className="h-full lg:flex hidden justify-center items-center">
+                                {/* Desplegable */}
+                                <Desplegable categorias={categorias} />
+
+                                <div
+                                    className="button px-3 text-xl font-[inherit] font-extrabold text-[#000000b4]"
+                                    // onClick={() => ContactanosBtn()}
+                                >
+                                    Contactanos
                                 </div>
 
-                                {/* Buscar y Carrito */}
-                                <div className="h-full flex flex-row justify-center items-center ">
-                                    {/* formulario */}
-                                    <FormBuscar />
-                                    {/* Boton Carrito */}
-                                    <Carrito />
-                                </div>
-
-                                {/* Categorias, Contactanos */}
-                                <div className="h-full lg:flex hidden justify-center items-center">
-                                    {/* Desplegable */}
-                                    <Desplegable categorias={categorias} />
-
-                                    <div
-                                        className="button px-3 text-xl font-[inherit] font-extrabold text-[#000000b4]"
-                                        // onClick={() => ContactanosBtn()}
-                                    >
-                                        Contactanos
-                                    </div>
-
-                                    {/* Boton Dark mode */}
-                                    <SwitchMaterial />
-                                </div>
+                                {/* Boton Dark mode */}
+                                <SwitchMaterial />
                             </div>
                         </div>
                     </div>
-                </Opacidad>
+                </div>
+                {/* </Opacidad> */}
                 <MenuOculto
                     openMenu={openMenu}
                     setOpenMenu={setOpenMenu}
@@ -173,20 +169,7 @@ const Menu = ({
                 />
             </header>
 
-            <div
-                ref={MenuRef}
-                className=" h-full w-full flex flex-col items-center relative bg-[--color-Body]"
-            >
-                {/* Contenido */}
-                {children}
-
-                <Opacidad>
-                    {/* Footer */}
-                    <div className="mt-4 w-[100%] shadow-lg overflow-hidden">
-                        <Footer categorias={categorias} />
-                    </div>
-                </Opacidad>
-            </div>
+            <div className=" hidden" ref={MenuRef}></div>
         </div>
     );
 };

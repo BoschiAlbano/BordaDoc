@@ -1,12 +1,11 @@
-// "use client";
-
 import FormularioContacto from "@/components/formulario/formContactar";
 import { GetFormatos, fetchGetCategorias } from "@/lib/data";
 import { categoria } from "@/lib/definiciones";
 import Link from "next/link";
-
+import Formatos from "@/components/formatos/formatos";
 import Opacidad from "@/components/FrameMotion/opacidad";
 import Gesture from "@/components/FrameMotion/gesture";
+
 export default async function Home() {
     const GetCategorias = await fetchGetCategorias();
 
@@ -113,23 +112,6 @@ export default async function Home() {
         </div>
     );
 }
-
-const Formatos = ({ textos }: { textos: string[] }) => {
-    return (
-        <div className="w-full h-full flex flex-row flex-wrap gap-[1rem] justify-center items-center ">
-            {textos.map((item, index) => {
-                return (
-                    <p
-                        key={index}
-                        className=" bg-[--color-Fondo-Texto] text-[--color-Texto-Opuesto] rounded-2xl py-[0.2rem] px-[0.5rem] font-bold text-xl"
-                    >
-                        {item}
-                    </p>
-                );
-            })}
-        </div>
-    );
-};
 
 const Tarjeta_C = ({ datos }: { datos: categoria[] }) => {
     return (

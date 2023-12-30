@@ -1,14 +1,18 @@
-import React, { useRef, ChangeEvent, useState } from "react";
+"use client";
 
-import { DatosFormularioContacto } from "@/lib/definiciones";
+import React, { useRef, ChangeEvent, useState, useEffect } from "react";
 
-interface ImagenUploadProps {
-    datos: DatosFormularioContacto;
-    setDatos: React.Dispatch<React.SetStateAction<DatosFormularioContacto>>;
-}
-
-const ImagenUpload: React.FC<ImagenUploadProps> = ({ datos, setDatos }) => {
+export default function ImagenUpload({
+    Error,
+    Limpiar,
+}: {
+    Error: string[] | undefined;
+    Limpiar: boolean;
+}) {
     const inputRef = useRef<HTMLInputElement>(null);
+    const [datos, setDatos] = useState<{ Imagen: File | null }>({
+        Imagen: null,
+    });
 
     const handleImagenClick = () => {
         if (inputRef.current) {
@@ -22,12 +26,22 @@ const ImagenUpload: React.FC<ImagenUploadProps> = ({ datos, setDatos }) => {
         if (file) {
             setDatos({ ...datos, Imagen: file });
         }
+
+        console.log(datos.Imagen);
     };
+
+    useEffect(() => {
+        if (Limpiar) {
+            setDatos({ Imagen: null });
+        }
+    }, [Limpiar]);
 
     return (
         <div
             onClick={handleImagenClick}
-            className="bg-[--color-Blanco] rounded-xl h-[180px] w-full flex items-center justify-center overflow-hidden cursor-pointer vibrar"
+            className={`bg-[--color-Blanco] rounded-xl h-[180px] w-full flex items-center justify-center overflow-hidden cursor-pointer vibrar ${
+                Error ? "border border-red-400" : "border-none"
+            }`}
         >
             {datos.Imagen ? (
                 <img
@@ -48,9 +62,9 @@ const ImagenUpload: React.FC<ImagenUploadProps> = ({ datos, setDatos }) => {
                 ref={inputRef}
                 onChange={handleImageChange}
                 style={{ display: "none" }}
+                name="Foto"
+                area-aria-describedby="Contactanos-Foto"
             />
         </div>
     );
-};
-
-export default ImagenUpload;
+}

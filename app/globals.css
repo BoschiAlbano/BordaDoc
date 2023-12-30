@@ -23,12 +23,6 @@
     --color-700: #191d32;
     --color-800: #0e1121;
 
-    /* Colores White */
-    /* --color-500-white: #f8f8ec;
-    --color-600-white: #6dc7e9;
-    --color-700-white: #191d32;
-    --color-800-white: #0e1121; */
-
     --primary-100: #2a9d8f;
     --primary-200: #008073;
     --primary-300: #004238;
@@ -43,6 +37,47 @@
     --Scrollbar-thumb-Color: var(--color2);
     --Degradado-Color-1: var(--color1);
     --Degradado-Color-2: var(--color2);
+
+    /* light */
+    --Secciones-Header: var(--bg-100);
+    --color-Body: var(--bg-100);
+    --Secciones-Color: var(--bg-100);
+    --Menu-Desplegable-Color: var(--bg-100);
+    --color-Texto: var(--primary-300);
+    --color-Texto-Opuesto: var(--bg-100);
+    --color-Texto-Buscar: var(--primary-300);
+    --color-Texto-Fondo: var(--primary-300);
+    --color-Fondo-Texto: #555458;
+    ---Degradado-Color-1: #776aa942;
+    ---Degradado-Color-2: #f4f4f433;
+    --Scrollbar-Color: var(--bg-100);
+    ---Contedor-Degradado-Color-1: var(--color1);
+    ---Contedor-Degradado-Color-2: var(--bg-100);
+    ---Contedor-Degradado-Hijo-Color-2: var(--bg-100);
+    --Texto-Color: var(--color-Blanco-white);
+    --Total-Icono-Carrito: var(--color-Blanco-white);
+    --Planta-Color: var(--color-Blanco-white);
+    --Separador-Color: var(--color--white);
+    --Tarjeta-Color: var(--bg-100);
+    --Degradado-Color-1: var(--color1);
+    --Degradado-Color-2: var(--color2);
+    --Carrito-Color: var(--bg-100);
+
+    --Desplegable-Categoria: var(--bg-100);
+
+    --Buscar-Color-Borde: var(--primary-200);
+    --Texto-Categorias-Hover: var(--primary-200);
+    --Efecto-Categorias: var(--primary-200);
+    --Icono-Carrito: var(--primary-200);
+    --Icono-Carrito-Hover: var(--primary-200);
+    --Separador-Color-Hover: var(--primary-200);
+    --Separador-Lineas: var(--primary-200);
+    --Corazon-Color: #d26698;
+    --Transparente: #da0d0d00;
+    --Transparente2: #0000009f;
+
+    --Cargar-fondo: #eee;
+    --Cargar-color: white;
 }
 
 /* Cambio con el switch */
@@ -84,6 +119,9 @@
     --Corazon-Color: #d26698;
     --Transparente: #da0d0d00;
     --Transparente2: #0000009f;
+
+    --Cargar-fondo: #eee;
+    --Cargar-color: white;
 }
 .light {
     --Secciones-Header: var(--bg-100);
@@ -122,6 +160,9 @@
     --Corazon-Color: #d26698;
     --Transparente: #da0d0d00;
     --Transparente2: #0000009f;
+
+    --Cargar-fondo: #eee;
+    --Cargar-color: rgb(0, 0, 0);
 }
 
 /* Sistema claro */
@@ -930,8 +971,39 @@ body.menu-open {
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    justify-items: center;
+    /* justify-items: center; */
     align-items: center;
 
     gap: 1rem;
+}
+
+/* @media screen and (width <= 640px) {
+    .Masonry_Productos {
+        justify-items: center;
+    }
+} */
+
+@keyframes loaderSwipeAnim {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.loading {
+    /* Estilos específicos para el efecto de carga */
+    opacity: 0.5; /* Puedes ajustar la opacidad según tus preferencias */
+    animation: loaderText 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    /* transition: opacity 0.5s ease-in-out; Añade una transición suave de opacidad */
+}
+
+@keyframes loaderText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

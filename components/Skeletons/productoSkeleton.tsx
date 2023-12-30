@@ -1,24 +1,50 @@
 import React from "react";
-import ContentLoader from "react-content-loader";
 
-const MyLoader = () => (
-    <ContentLoader
-        speed={2}
-        width={400}
-        height={150}
-        viewBox="0 0 400 150"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-    >
-        <circle cx="10" cy="20" r="8" />
-        <rect x="25" y="15" rx="5" ry="5" width="220" height="10" />
-        <circle cx="10" cy="50" r="8" />
-        <rect x="25" y="45" rx="5" ry="5" width="220" height="10" />
-        <circle cx="10" cy="80" r="8" />
-        <rect x="25" y="75" rx="5" ry="5" width="220" height="10" />
-        <circle cx="10" cy="110" r="8" />
-        <rect x="25" y="105" rx="5" ry="5" width="220" height="10" />
-    </ContentLoader>
-);
+export const containerStyles: React.CSSProperties = {
+    width: "100%",
+    height: "100%",
+    position: "relative",
+};
 
-export default MyLoader;
+function LoadingPlaceHolder({
+    children,
+    container,
+    extraStyles,
+}: {
+    children: React.ReactNode;
+    container: boolean;
+    extraStyles?: React.CSSProperties;
+}) {
+    const loaderStyles: React.CSSProperties = {
+        // backgroundColor: "#eee",
+        width: "100%",
+        overflow: "hidden",
+        position: container ? "absolute" : "relative",
+        ...extraStyles,
+    };
+
+    const loaderSwipeStyles: React.CSSProperties = {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
+        background:
+            "linear-gradient(to right, #eeeeee 10%, #dddddd 50%, #eeeeee 90%)",
+        // "linear-gradient(to right, #eeeeee 10%, #F8F8EC 50%, #eeeeee 90%)",
+        // "linear-gradient(to right, #eeeeee 10%, #191D32 50%, #eeeeee 90%)",
+        animation: "loaderSwipeAnim 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite",
+        height: "100%",
+    };
+
+    return (
+        <div style={loaderStyles}>
+            {children}
+            <div style={loaderSwipeStyles}></div>
+        </div>
+    );
+}
+
+export default LoadingPlaceHolder;
+
+// backgroundColor="#f0f0f0"
+// foregroundColor="#dedede"
