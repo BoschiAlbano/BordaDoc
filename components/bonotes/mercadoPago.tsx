@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import SpinnerMercadoPago from "../Spinner/mercadoPago";
+// import SpinnerMercadoPago from "../Spinner/mercadoPago";
+import SpinnerMercadoPago from "../spinner/mercadoPago";
 import Link from "next/link";
 
 import { producto } from "@/lib/definiciones";

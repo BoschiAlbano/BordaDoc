@@ -1,8 +1,7 @@
 import React from "react";
-// import styles from '@/styles/mercadoPago.module.css';
 import styles from "./mercadoPago.module.css";
 
-const MercadoPago = () => {
+const SpinnerMercadoPago = () => {
     return (
         <div className={styles.container}>
             <div className={styles.block}></div>
@@ -13,4 +12,4 @@ const MercadoPago = () => {
     );
 };
 
-export default MercadoPago;
+export default SpinnerMercadoPago;
