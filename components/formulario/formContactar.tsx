@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { Contactanos } from "@/lib/actions";
+import { Contactanos as actionContactanos } from "@/lib/actions";
 import ImagenUpload from "../bonotes/imagen";
 import { GetFormatos } from "@/lib/data";
 import { useEffect, useRef } from "react";
@@ -11,7 +11,7 @@ const FormularioContacto = () => {
         message: "",
         errors: {},
     };
-    const [state, dispatch] = useFormState(Contactanos, initialState);
+    const [state, dispatch] = useFormState(actionContactanos, initialState);
 
     const { pending } = useFormStatus();
 
@@ -35,7 +35,7 @@ const FormularioContacto = () => {
                         ? "manejalovos"
                         : state?.errors?.Nombre?.toString()
                 }
-                className={`w-[90%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo] text-center py-2 h-[10%] min-h-[35px] outline-none vibrar  ${
+                className={`w-[90%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo] text-center py-2 h-[10%] min-h-[50px] outline-none vibrar  ${
                     state?.errors?.Nombre
                         ? "border border-red-400"
                         : "border-none"
@@ -51,7 +51,7 @@ const FormularioContacto = () => {
             />
 
             <input
-                className={`w-[90%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[35px] outline-none vibrar ${
+                className={`w-[90%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[50px] outline-none vibrar ${
                     state?.errors?.Email
                         ? "border border-red-400"
                         : "border-none"
@@ -67,7 +67,7 @@ const FormularioContacto = () => {
                 id=""
             />
 
-            <div className="w-[90%] h-[180px] gap-2 grid grid-cols-2  ">
+            <div className="w-[90%] h-[250px] gap-2 grid grid-cols-2  ">
                 <ImagenUpload
                     Limpiar={state.errors === undefined ? true : false}
                     Error={state.errors?.Foto}
@@ -76,7 +76,7 @@ const FormularioContacto = () => {
                 <div className="h-full w-full flex flex-col justify-between items-center">
                     {/* // Alto Ancho */}
                     <input
-                        className={`w-[100%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[35px] outline-none vibrar ${
+                        className={`w-[100%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[50px] outline-none vibrar ${
                             state?.errors?.Ancho
                                 ? "border border-red-400"
                                 : "border-none"
@@ -90,7 +90,7 @@ const FormularioContacto = () => {
                         area-aria-describedby="Contactanos-Alto"
                     />
                     <input
-                        className={`w-[100%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[35px] outline-none vibrar ${
+                        className={`w-[100%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[50px] outline-none vibrar ${
                             state?.errors?.Ancho
                                 ? "border border-red-400"
                                 : "border-none"
@@ -107,7 +107,7 @@ const FormularioContacto = () => {
                     />
 
                     <input
-                        className={`w-[100%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[35px] outline-none vibrar ${
+                        className={`w-[100%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[50px] outline-none vibrar ${
                             state?.errors?.Aplique
                                 ? "border border-red-400"
                                 : "border-none"
@@ -127,7 +127,7 @@ const FormularioContacto = () => {
                     <select
                         name="Formato"
                         id=""
-                        className={`w-[100%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[35px] outline-none vibrar cursor-pointer ${
+                        className={`w-[100%] rounded-xl bg-[--color-Blanco] text-[--color-Texto-Fondo]  text-center py-2 h-[10%] min-h-[50px] outline-none vibrar cursor-pointer ${
                             state?.errors?.Formato
                                 ? "border border-red-400"
                                 : "border-none"

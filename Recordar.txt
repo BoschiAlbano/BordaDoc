@@ -3,3 +3,16 @@ Tipos de datos:
 
 datos: DatosFormularioContacto;
 setDatos: React.Dispatch<React.SetStateAction<DatosFormularioContacto>>;
+
+Mercado: Crear link de pago - notificar el pago -
+https://www.youtube.com/watch?v=i9Dwe0IkV2E&t=585s
+
+"Id de preferencias"
+id: '1512312240-98be0a10-3b30-4f40-9dbc-52b2e1a3947a',
+Collector_id: 1512312240
+
+"Id de notificacion"
+collector_id: 1512312240
+
+"home -> URL de respuesta de mercado pago"
+https://cd23-181-117-24-235.ngrok-free.app/?collection_id=1316549634&collection_status=approved&payment_id=1316549634&status=approved&external_reference=null&payment_type=credit_card&merchant_order_id=14770478454&preference_id=1512312240-98be0a10-3b30-4f40-9dbc-52b2e1a3947a&site_id=MLA&processing_mode=aggregator&merchant_account_id=null

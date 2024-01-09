@@ -11,7 +11,6 @@ const Tarjeta = ({ item }: { item: producto }) => {
                 <div className="flex flex-col justify-center items-center overflow-hidden">
                     <div className="absolute left-0 top-0 p-2">
                         <Corazon item={item} />
-                        {/* <h1>Corazon</h1> */}
                     </div>
 
                     <img

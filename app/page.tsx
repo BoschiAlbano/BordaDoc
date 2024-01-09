@@ -6,11 +6,18 @@ import Formatos from "@/components/formatos/formatos";
 import Opacidad from "@/components/FrameMotion/opacidad";
 import Gesture from "@/components/FrameMotion/gesture";
 
+import { Metadata } from "next";
+import Descargar from "@/components/bonotes/btn-Descargar-Archivos";
+
+export const metadata: Metadata = {
+    title: "Home | BordaDoc",
+};
+
 export default async function Home() {
-    const GetCategorias = await fetchGetCategorias();
+    const GetCategorias: categoria[] = await fetchGetCategorias();
 
     return (
-        <div className="pt-28 pb-20 h-full w-full relative flex flex-col justify-center items-center sm:gap-[10rem] gap-[4rem] ">
+        <div className="sm:pt-28 pt-20 pb-20 h-full w-full relative flex flex-col justify-center items-center sm:gap-[10rem] gap-[4rem] ">
             {/* ------------------------- Bienvenido ------------------------------- */}
             <Opacidad>
                 <div className="sm:w-[85%] w-full my-[1rem]">
@@ -18,8 +25,9 @@ export default async function Home() {
                         {/* imagen */}
                         <img
                             src="./assets/wilcom/LogoBienvenida.png"
+                            // src={`${process.env.NEXT_PUBLIC_HOST}/assets/wilcom/logoBienvenida.png`}
                             alt="Logo de Bienvenida"
-                            className="sm:w-[40%] w-[100%]"
+                            className=" xl:w-[30%] sm:w-[35%] w-[90%]"
                         />
                         {/* Parrafo */}
                         <div className="sm:w-[60%] w-[100%] text-xl text-[--color-Texto] text-center">
@@ -73,6 +81,7 @@ export default async function Home() {
                         <h1 className=" text-[--color-Texto] text-4xl font-bold">
                             Categorias
                         </h1>
+
                         <Tarjeta_C datos={GetCategorias} />
                     </section>
                 </div>
@@ -121,7 +130,7 @@ const Tarjeta_C = ({ datos }: { datos: categoria[] }) => {
                     <Link
                         key={index}
                         href={`/categoria/${item.id}`}
-                        className=" cursor-pointer shadow-xl rounded-[2rem] max-w-[180px]"
+                        className=" cursor-pointer shadow-xl rounded-[2rem] max-w-[250px]"
                     >
                         <Gesture>
                             <div className="Contenedor-Degradado-Tarjeta-Hijo">

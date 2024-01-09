@@ -6,6 +6,12 @@ import ProductosSkeleton from "@/components/Skeletons/productoSkeleton";
 import Masonry_Productos from "@/components/tarjetas/lista-Tarjetas-productos";
 import Fallback_Tarjeta from "@/components/Skeletons/Fallback-Tarjetas";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Productos | BordaDoc",
+};
+
 export default function Page({ params }: { params: { cadena: string } }) {
     const { cadena } = params;
 

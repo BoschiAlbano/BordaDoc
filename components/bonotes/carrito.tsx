@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { useFavoritosContext } from "@/lib/hook/favoritosContext";
-import { useApiContext } from "@/lib/hook/apiContext";
 
 import Producto from "../carrito/Produto";
 
@@ -17,10 +16,10 @@ import "swiper/css/pagination";
 
 // Modulos
 import { Autoplay, Pagination } from "swiper/modules";
+import MercadoPago from "./mercadoPago";
 
 const Carrito = () => {
-    const { carrito } = useFavoritosContext();
-    const { BuscarProducto } = useApiContext();
+    const { carrito } = useFavoritosContext(); // this products is cart
     const [categoriaOpen, SetCategoriaOpen] = useState(false);
     const [cantidad, setCantidad] = useState<number>(0);
 
@@ -54,7 +53,7 @@ const Carrito = () => {
                     </svg>
                     <span className="quantity"></span>
                 </div>
-                {/* Desplegable */}
+                {/* Desplegable Carrito*/}
                 <div
                     className={`absolute left-0 shadow-xls w-screen flex justify-center items-center ${
                         categoriaOpen ? "overflow-visible" : "hidden"
@@ -102,19 +101,20 @@ const Carrito = () => {
                                                         }}
                                                     >
                                                         <Producto
-                                                            P_Original={BuscarProducto(
-                                                                item.id
-                                                            )}
+                                                            P_Original={item}
                                                         />
                                                     </SwiperSlide>
                                                 );
                                             })}
                                         </Swiper>
+                                        <MercadoPago productos={carrito} />
                                     </div>
                                 ) : (
-                                    <h1 className=" text-rose-400">
-                                        No hay productos en el carrito
-                                    </h1>
+                                    <>
+                                        <h1 className=" text-rose-400">
+                                            No hay productos en el carrito
+                                        </h1>
+                                    </>
                                 )}
                             </div>
                         </div>
@@ -126,65 +126,3 @@ const Carrito = () => {
 };
 
 export default Carrito;
-
-// useEffect(() => {
-//     setCantidad(carrito.length);
-// }, [carrito]);
-
-{
-    /* <MercadoPago productos={carrito} /> */
-}
-
-/*
-
-
-                                {carrito.length != 0 ? (
-                                    <div className=" w-[100%] h-full flex flex-col justify-evenly items-center gap-5 pt-5">
-                                        <Swiper
-                                            spaceBetween={0}
-                                            slidesPerView={1}
-                                            freeMode={true}
-                                            autoplay={true}
-                                            pagination={true}
-                                            modules={[Pagination, Autoplay]}
-                                            breakpoints={{
-                                                640: {
-                                                    slidesPerView: 2,
-                                                    spaceBetween: 10,
-                                                    autoplay: true,
-                                                    pagination: {
-                                                        clickable: true,
-                                                        dynamicBullets: true,
-                                                    },
-                                                    freeMode: true,
-                                                },
-                                            }}
-                                            className="mySwiperTarjetas"
-                                            id="mySwiperTarjetas"
-                                        >
-                                            {carrito.map((item, index) => {
-                                                return (
-                                                    <SwiperSlide
-                                                        key={index}
-                                                        style={{
-                                                            width: "100%",
-                                                        }}
-                                                    >
-                                                        <Producto
-                                                            P_Original={BuscarProducto(
-                                                                item.id
-                                                            )}
-                                                        />
-                                                    </SwiperSlide>
-                                                );
-                                            })}
-                                        </Swiper>
-
-                                    </div>
-                                ) : (
-                                    <h1 className=" text-rose-400">
-                                        No hay productos en el carrito
-                                    </h1>
-                                )}
-
-*/

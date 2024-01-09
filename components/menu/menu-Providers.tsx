@@ -12,8 +12,8 @@ import Carrito from "../bonotes/carrito";
 import Link from "next/link";
 
 import { TiThMenu } from "react-icons/ti";
-import { ApiContextProvider } from "@/lib/hook/apiContext";
 import { FavoritosContextProvider } from "@/lib/hook/favoritosContext";
+import Ver_Descargas from "../bonotes/btn-ver-Descargas";
 
 export default function Providers({
     children,
@@ -24,25 +24,23 @@ export default function Providers({
 }) {
     return (
         <>
-            <ApiContextProvider>
-                <FavoritosContextProvider>
-                    {/* Menu */}
-                    <Menu categorias={categorias}></Menu>
+            <FavoritosContextProvider>
+                {/* Menu */}
+                <Menu categorias={categorias}></Menu>
 
-                    <div className=" h-full w-full flex flex-col items-center relative bg-[--color-Body]">
-                        {/* Contenido */}
-                        {children}
+                <div className=" h-full w-full min-h-screen flex flex-col justify-between items-center relative bg-[--color-Body]">
+                    {/* Contenido */}
+                    {children}
 
+                    {/* Footer */}
+                    <Opacidad>
                         {/* Footer */}
-                        <Opacidad>
-                            {/* Footer */}
-                            <div className="mt-4 w-[100%] shadow-lg overflow-hidden">
-                                <Footer categorias={categorias} />
-                            </div>
-                        </Opacidad>
-                    </div>
-                </FavoritosContextProvider>
-            </ApiContextProvider>
+                        <div className="mt-4 w-[100%] shadow-lg overflow-hidden">
+                            <Footer categorias={categorias} />
+                        </div>
+                    </Opacidad>
+                </div>
+            </FavoritosContextProvider>
         </>
     );
 }
@@ -139,8 +137,13 @@ const Menu = ({ categorias }: { categorias: categoria[] }) => {
                             <div className="h-full flex flex-row justify-center items-center ">
                                 {/* formulario */}
                                 <FormBuscar />
-                                {/* Boton Carrito */}
-                                <Carrito />
+
+                                <div className="flex flex-row">
+                                    {/* Boton Carrito */}
+                                    <Carrito />
+                                    {/* Boton Carrito */}
+                                    <Ver_Descargas />
+                                </div>
                             </div>
 
                             {/* Categorias, Contactanos */}
@@ -148,12 +151,12 @@ const Menu = ({ categorias }: { categorias: categoria[] }) => {
                                 {/* Desplegable */}
                                 <Desplegable categorias={categorias} />
 
-                                <div
+                                <Link
+                                    href={"/contactanos"}
                                     className="button px-3 text-xl font-[inherit] font-extrabold text-[#000000b4]"
-                                    // onClick={() => ContactanosBtn()}
                                 >
                                     Contactanos
-                                </div>
+                                </Link>
 
                                 {/* Boton Dark mode */}
                                 <SwitchMaterial />
@@ -174,23 +177,24 @@ const Menu = ({ categorias }: { categorias: categoria[] }) => {
     );
 };
 
+// ❗ No puedo pasar una referencia desde la pagina home al payout del menu
 // Contactanos: RefObject<any>;
 
-// const ContactanosBtn = () => {
-//     // Contactanos.current.scrollIntoView({
-//     //     behavior: "smooth",
-//     // });
+// Contactanos.current.scrollIntoView({
+//     behavior: "smooth",
+// });
 
-//     if (Contactanos === null) {
-//         navigation.push("/");
-//         return;
-//     }
+// if (Contactanos === null) {
+//     navigation.push("/");
+//     return;
+// }
 
-//     let Posicion = Contactanos.current.getBoundingClientRect();
-//     console.log(Posicion);
+// let Posicion = Contactanos.current.getBoundingClientRect();
+// console.log(Posicion);
 
+// if (PosicionContactanos?.top) {
 //     window.scrollTo({
-//         top: window.scrollY + (Posicion.top - 200),
+//         top: window.scrollY + (PosicionContactanos?.top - 200),
 //         behavior: "smooth",
 //     });
-// };
+// }

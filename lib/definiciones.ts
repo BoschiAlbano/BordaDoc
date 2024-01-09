@@ -55,3 +55,15 @@ export type DatosFormularioContacto = {
     Formato: string;
     Mensaje: string;
 };
+
+export type orden = {
+    n_orden: string;
+    estado: boolean;
+};
+
+export type detalle_orden = {
+    titulo: string;
+    precio: number;
+    productoId: number;
+    ordenId: number;
+};

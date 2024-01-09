@@ -11,6 +11,20 @@ export default async function Masonry_Productos_Categoria({
 }) {
     const Productos = await fetchGetByCategoria(categoriaId);
 
+    if (!Productos.length) {
+        return (
+            <>
+                <Opacidad>
+                    <div className={`Masonry_Productos justify-items-center`}>
+                        <h1 className=" text-rose-400">
+                            No se encontraron Productos Relacionados...
+                        </h1>
+                    </div>
+                </Opacidad>
+            </>
+        );
+    }
+
     return (
         <>
             <Opacidad>

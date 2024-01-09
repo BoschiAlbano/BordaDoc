@@ -18,12 +18,13 @@ interface FavoritosContextType {
     favorito: producto[];
     carrito: producto[];
     modo: boolean;
-    alert: alertaType;
+    // alert: alertaType;
     setCarrito: Dispatch<SetStateAction<producto[]>>;
     setModo: Dispatch<SetStateAction<boolean>>;
     handleFavoritos: (args: { producto: producto }) => void;
     handleCarrito: (args: { producto: producto }) => void;
     handleCarritoDelete: (id: number) => void;
+    mostrarAlerta: (args: { msj: string; severity: SeverityType }) => void;
 }
 
 // Creamos el contexto con el tipo que acabamos de definir
@@ -174,7 +175,7 @@ export const FavoritosContextProvider: React.FC<
                 favorito,
                 carrito,
                 modo,
-                alert,
+                mostrarAlerta,
                 setCarrito,
                 setModo,
                 handleFavoritos,

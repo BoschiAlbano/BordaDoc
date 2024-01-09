@@ -39,7 +39,7 @@ export default function ImagenUpload({
     return (
         <div
             onClick={handleImagenClick}
-            className={`bg-[--color-Blanco] rounded-xl h-[180px] w-full flex items-center justify-center overflow-hidden cursor-pointer vibrar ${
+            className={`bg-[--color-Blanco] rounded-xl h-full w-full flex items-center justify-center overflow-hidden cursor-pointer vibrar ${
                 Error ? "border border-red-400" : "border-none"
             }`}
         >

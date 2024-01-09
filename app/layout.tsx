@@ -5,8 +5,9 @@ import Menu from "@/components/menu/menu-Providers";
 import { fetchGetCategorias } from "@/lib/data";
 
 export const metadata: Metadata = {
-    title: "DordaDoc - Home",
     description: "Ecoomerce para descargar deseños para paquinas de bordar",
+    metadataBase: new URL(`${process.env.NEXT_PUBLIC_HOST}`),
+    icons: "/assets/wilcom/IconoBordaDoc.ico",
 };
 
 export default async function RootLayout({

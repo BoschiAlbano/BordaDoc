@@ -6,6 +6,19 @@ import { fetchGetByCadena } from "@/lib/data";
 
 export default async function Masonry_Productos({ texto }: { texto: string }) {
     const Productos = await fetchGetByCadena(texto);
+    if (!Productos.length) {
+        return (
+            <>
+                <Opacidad>
+                    <div className={`Masonry_Productos justify-items-center`}>
+                        <h1 className=" text-rose-400">
+                            No se encontraron Productos Relacionados...
+                        </h1>
+                    </div>
+                </Opacidad>
+            </>
+        );
+    }
 
     return (
         <>

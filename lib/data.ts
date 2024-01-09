@@ -1,108 +1,96 @@
 import { producto, categoria } from "./definiciones";
-
-// Base de datos
-const ProdutosDB = [
-    {
-        id: 1,
-        titulo: "Escudo de Barcelona",
-        precio: 1100,
-        url: "https://http2.mlstatic.com/D_NQ_NP_625300-MLA69406261319_052023-O.webp",
-        categoriaId: 1,
-    },
-    {
-        id: 2,
-        titulo: "Panda",
-        precio: 1100,
-        url: "https://i.pinimg.com/736x/96/be/32/96be3297f5bdaf1ecd6d52efef8bcb86.jpg",
-        categoriaId: 2,
-    },
-    {
-        id: 3,
-        titulo: "Egresados 2022",
-        precio: 1100,
-        url: "https://d3ugyf2ht6aenh.cloudfront.net/stores/332/787/products/image-c525c5fcaf7713a0b216224028144793-480-0.",
-        categoriaId: 3,
-    },
-    {
-        id: 4,
-        titulo: "Adidas",
-        precio: 1100,
-        url: "https://i.ytimg.com/vi/j9pGNCR9v10/maxresdefault.jpg",
-        categoriaId: 4,
-    },
-    {
-        id: 5,
-        titulo: "Flores",
-        precio: 1100,
-        url: "https://i.pinimg.com/originals/04/ea/a4/04eaa49c0211416ff301223b7587a926.jpg",
-        categoriaId: 5,
-    },
-];
-const CategoriaDB = [
-    {
-        id: 1,
-        descripcion: "Futbol",
-        url: "/assets/wilcom/Categorias/Futbol.png",
-    },
-    {
-        id: 2,
-        descripcion: "Animales",
-        url: "/assets/wilcom/Categorias/Animales.png",
-    },
-    {
-        id: 3,
-        descripcion: "Egresados",
-        url: "/assets/wilcom/Categorias/Egresados.png",
-    },
-    {
-        id: 4,
-        descripcion: "Marcas",
-        url: "/assets/wilcom/Categorias/Marcas.png",
-    },
-    {
-        id: 5,
-        descripcion: "Flores",
-        url: "/assets/wilcom/Categorias/Flores.png",
-    },
-    {
-        id: 6,
-        descripcion: "Otros",
-        url: "/assets/wilcom/Categorias/otros.png",
-    },
-];
+import { supabase } from "./supabase/cliente";
 
 // buscar todo en base de datos
-
 export async function fetchGetCategorias(): Promise<categoria[]> {
-    const categorias: categoria[] = CategoriaDB;
+    try {
+        let { data: Categorias, error } = await supabase
+            .from("Categorias")
+            .select("*");
 
-    return categorias;
+        if (error) {
+            return [];
+        }
+
+        if (Categorias) {
+            return Categorias;
+        }
+
+        return [];
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 export async function fetchGetProductos(): Promise<producto[]> {
-    const productos: producto[] = ProdutosDB;
-    return productos;
+    try {
+        let { data: Productos, error } = await supabase
+            .from("Productos")
+            .select("*");
+
+        if (error) {
+            return [];
+        }
+
+        if (Productos) {
+            return Productos;
+        }
+
+        return [];
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 
 export async function fetchGetByCadena(cadena: string): Promise<producto[]> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const buscar: producto[] = ProdutosDB.filter((item) =>
-        item.titulo.toLowerCase().includes(cadena.toLowerCase())
-    );
+    try {
+        let { data: Productos, error } = await supabase
+            .from("Productos")
+            .select("*")
+            .ilike("titulo", `%${cadena}%`);
 
-    return buscar;
+        if (error) {
+            return [];
+        }
+
+        if (Productos) {
+            return Productos;
+        }
+
+        return [];
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 
 export async function fetchGetByCategoria(
     categoriaId: string
 ): Promise<producto[]> {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const buscar: producto[] = ProdutosDB.filter(
-        (item) => item.categoriaId === Number(categoriaId)
-    );
+    try {
+        let { data: Productos, error } = await supabase
+            .from("Productos")
+            .select("*")
+            .eq("categoriaId", `${categoriaId}`);
 
-    return buscar;
+        if (error) {
+            return [];
+        }
+
+        if (Productos) {
+            return Productos;
+        }
+
+        return [];
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 
 export const GetFormatos = [
