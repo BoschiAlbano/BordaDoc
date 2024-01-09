@@ -28,7 +28,7 @@ export default function MenuOculto({
         <div
             className={`${
                 openMenu ? "translate-x-[0%]" : "translate-x-[-100%]"
-            } transition-transform duration-300 sm:w-[50%] w-[100%] min-h-[100svh] h-[100%] absolute bg-[--Menu-Desplegable-Color] z-[999] overflow-y-scroll top-0 left-0   `}
+            } transition-transform duration-300 sm:w-[50%] w-[100%] min-h-[100dvh] h-[100%] absolute bg-[--Menu-Desplegable-Color] z-[999] overflow-y-scroll top-0 left-0   `}
             // onClick={() => setOpenMenu(!openMenu)}
         >
             {/* Cerrar */}

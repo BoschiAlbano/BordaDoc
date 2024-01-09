@@ -24,7 +24,7 @@ export default async function Home() {
                     <section className="w-full flex flex-col justify-center items-center gap-[3rem] relative p-2 rounded-[2rem]">
                         {/* imagen */}
                         <img
-                            src="./assets/wilcom/LogoBienvenida.png"
+                            src="./assets/wilcom/logoBienvenida.png"
                             // src={`${process.env.NEXT_PUBLIC_HOST}/assets/wilcom/logoBienvenida.png`}
                             alt="Logo de Bienvenida"
                             className=" xl:w-[30%] sm:w-[35%] w-[90%]"
