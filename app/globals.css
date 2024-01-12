@@ -542,6 +542,8 @@ body.menu-open {
     justify-content: center;
 
     max-width: 250px;
+    min-width: 250px;
+
     /* min-width: 250px; */
 }
 
@@ -671,7 +673,7 @@ body.menu-open {
 
 /* Tarjetas */
 .mySwiperTarjetas {
-    height: 130px;
+    /* height: 150px; */
 }
 .mySwiperTarjetas .swiper-pagination {
     --swiper-pagination-color: var(--color2);
@@ -1113,7 +1115,7 @@ body.menu-open {
     );
     color: var(--Texto-Color);
 
-    /* border: 1px solid var(--Texto-Color); */
+    border: 1px solid var(--Texto-Color);
     cursor: pointer;
 }
 

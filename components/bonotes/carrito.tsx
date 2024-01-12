@@ -69,7 +69,7 @@ const Carrito = () => {
                         >
                             <div className=" bg-[--Carrito-Color] w-full h-full flex flex-col items-center  relative  sm:p-2 p-1 overflow-hidden">
                                 {cantidad != 0 ? (
-                                    <div className=" w-[100%] h-full flex flex-col justify-evenly items-center gap-5 pt-5">
+                                    <div className=" w-[100%] h-full flex flex-col justify-evenly items-center pt-5 gap-5">
                                         <Swiper
                                             spaceBetween={0}
                                             slidesPerView={1}
@@ -98,6 +98,7 @@ const Carrito = () => {
                                                         key={index}
                                                         style={{
                                                             width: "100%",
+                                                            padding: "10px",
                                                         }}
                                                     >
                                                         <Producto

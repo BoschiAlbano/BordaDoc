@@ -1,6 +1,6 @@
 "use client";
 import { supabase } from "@/lib/supabase/cliente";
-
+// ❌ Eliminar el componente
 export default function Descargar() {
     const Descargarall = () => {
         const carrito = [1, 2];

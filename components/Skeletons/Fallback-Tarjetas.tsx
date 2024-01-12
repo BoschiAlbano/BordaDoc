@@ -12,7 +12,7 @@ export default function Fallback_Tarjeta() {
     return (
         <div
             // style={containerStyles}
-            className="Masonry_Productos"
+            className="Masonry_Productos justify-items-center"
         >
             {componentes}
         </div>

@@ -16,13 +16,13 @@ const ProductoComponent: React.FC<{ P_Original: producto | undefined }> = ({
     };
 
     return (
-        <div className="Grilla_Carrito items-center  hover:bg-[#a8a8a8bd] p-2 w-full h-[100px]">
+        <div className="Grilla_Carrito items-center  hover:bg-[#a8a8a8bd] p-2 w-full h-full shadow-md rounded-lg">
             {/* Imagen */}
             <div className="h-full w-full flex justify-center items-center overflow-hidden">
                 <img
                     src={P_Original?.url}
                     alt={P_Original?.titulo}
-                    className=" w-full h-full object-contain"
+                    className=" w-full h-[120px] object-contain"
                 />
             </div>
 

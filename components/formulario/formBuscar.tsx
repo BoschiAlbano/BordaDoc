@@ -9,6 +9,8 @@ export default function FormBuscar() {
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
+        setTexto("");
+
         if (texto) {
             navigation.push(`/buscar/${texto}`);
         } else {

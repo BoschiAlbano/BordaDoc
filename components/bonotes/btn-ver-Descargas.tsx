@@ -23,31 +23,38 @@ import "swiper/css/pagination";
 
 // Modulos
 import { Autoplay, Pagination } from "swiper/modules";
+import { useLocalStorage } from "@/lib/hook/localStorage/hook";
+
+// icono check
+import { IoShieldCheckmark } from "react-icons/io5";
+import Tarjeta_Descargar_Producto from "../tarjetas/tarjeta-Descargar-Prodcuto";
+interface Descargas {
+    titulo: string;
+    urlDST: string | undefined;
+    urlEMB: string | undefined;
+    tiempo: string;
+}
 
 export default function Ver_Descargas() {
     const { carrito, mostrarAlerta, setCarrito } = useFavoritosContext();
 
+    const [descargas, setDescargas] = useLocalStorage<Descargas[]>(
+        "Descargas",
+        []
+    );
+
     const [categoriaOpen, SetCategoriaOpen] = useState(false);
-    const [Links, setLinks] = useState<
-        {
-            titulo: string;
-            urlDST: string | undefined;
-            urlEMB: string | undefined;
-        }[]
-    >([]);
+    // const [Links, setLinks] = useState<Descargas[]>([]);
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
 
-    // useEffect(() => {
-    //     setLinks([
-    //         { titulo: "Flores", urlDST: "null", urlEMB: "null" },
-    //         { titulo: "Egresados 2022", urlDST: "null", urlEMB: "null" },
-    //         { titulo: "Tecnica 2", urlDST: "null", urlEMB: "null" },
-    //         { titulo: "Esc Lujan", urlDST: "null", urlEMB: "null" },
-    //     ]);
-    // }, []);
+    const [cantidad, setCantidad] = useState<number>(0);
+    useEffect(() => {
+        console.log("Error de hidratacion servidor y cliente...");
+        setCantidad(descargas.length);
+    }, [descargas, setCantidad]);
 
     useEffect(() => {
         // Obtengo el Estado y el numero de orden
@@ -58,12 +65,12 @@ export default function Ver_Descargas() {
         const status = urlparams.get("status");
         const n_orden = urlparams.get("preference_id");
 
-        // Buscar la si la orden esta aprobada ? pero ya el stado me dice que esta aprobada 🤔🤔🤔
+        //❌❌❌ Buscar la si la orden esta aprobada ? pero ya el stado me dice que esta aprobada 🤔🤔🤔 si porque si ponen la url status approved y id cualquiera entonces va a descar de nuevo cualqueir logo
 
         if (status === "approved" && n_orden !== null) {
             // Alerta
             mostrarAlerta({
-                msj: "Pago Aprobado - Descargando -",
+                msj: "Pago Aprobado",
                 severity: SeverityType.Success,
             });
             // Descagar archivos
@@ -83,33 +90,40 @@ export default function Ver_Descargas() {
     }, []);
 
     const Descargarall = async (carrito: producto[]) => {
-        let _urls: {
-            titulo: string;
-            urlDST: string;
-            urlEMB: string;
-        }[] = [];
+        let _urls: Descargas[] = [];
 
         for (const items of carrito) {
             const resultado = await ObtenerLinksTemporales(items.titulo);
+            console.log(resultado);
             if (resultado) {
                 _urls.push(resultado);
             }
         }
 
-        setLinks(_urls);
+        // Agregar a local storage todas las descargas.
+        const nuevosDescargas = [...descargas];
+        const des = nuevosDescargas.concat(_urls);
+        console.log(des);
+        setDescargas(des);
+        // setLinks(_urls);
     };
 
     const ObtenerLinksTemporales = async (rutaArchivo: string) => {
+        console.log(rutaArchivo);
+
+        const rutaArchivoDST = `${rutaArchivo}.DST`;
+        const rutaArchivoEMB = `${rutaArchivo}.EMB`;
+
         try {
             // Obtén el enlace de descarga para el archivo DST
             const { data: DST, error } = await supabase.storage
                 .from("logos") // Reemplaza con el nombre de tu bucket
-                .createSignedUrl(`${rutaArchivo}.DST`, 3600); // El segundo parámetro es la duración del enlace en segundos
+                .createSignedUrl(rutaArchivoDST, 3600); // El segundo parámetro es la duración del enlace en segundos
 
             // Obtén el enlace de descarga para el archivo EMB
             const { data: EMB, error: e } = await supabase.storage
                 .from("logos")
-                .createSignedUrl(`${rutaArchivo}.EMB`, 3600);
+                .createSignedUrl(rutaArchivoEMB, 3600);
 
             if (error || e) {
                 console.log(error);
@@ -122,13 +136,22 @@ export default function Ver_Descargas() {
                 titulo: rutaArchivo,
                 urlDST: DST.signedUrl,
                 urlEMB: EMB.signedUrl,
+                tiempo: Date.now().toString(),
             };
         } catch (error: any) {
             console.error("Error al descargar el archivo:", error.message);
+            console.log("En: " + rutaArchivo);
             mostrarAlerta({
                 msj: "Error al descargar el archivo",
                 severity: SeverityType.Error,
             });
+
+            return {
+                titulo: rutaArchivo,
+                urlDST: "",
+                urlEMB: "",
+                tiempo: Date.now().toString(),
+            };
         }
     };
 
@@ -160,14 +183,14 @@ export default function Ver_Descargas() {
                 onMouseLeave={() => SetCategoriaOpen(false)}
             >
                 <div
-                    className={`relative EfectoCategoria overflow-hidden sm:w-[85%] w-[100%] `}
+                    className={`relative EfectoCategoria overflow-hidden w-[100%] `}
                 >
                     <div
                         className={`h-[auto] bg-[--Desplegable-Categoria] opacity-[1] shadow-xls   rounded-md text-center overflow-hidden `}
                     >
                         <div className=" bg-[--Carrito-Color] w-full h-full flex flex-col items-center  relative  sm:p-2 p-1 overflow-hidden">
-                            {Links.length != 0 ? (
-                                <div className=" w-[100%] h-full flex flex-col justify-evenly items-center gap-5 pt-5">
+                            {cantidad != 0 ? (
+                                <div className=" w-[100%] h-full flex flex-col justify-evenly items-center pt-5 sm:px-[10%]">
                                     {/* <h1 className=" text-[1.5rem] font-semibold mb-3 text-[var(--Texto-Color)]">
                                         Descargas
                                     </h1> */}
@@ -193,64 +216,33 @@ export default function Ver_Descargas() {
                                         className="mySwiperTarjetas"
                                         id="mySwiperTarjetas"
                                     >
-                                        {Links.map((items, index) => {
+                                        {descargas.map((items, index) => {
                                             return (
                                                 <SwiperSlide
                                                     key={index}
                                                     style={{
                                                         width: "100%",
+                                                        paddingLeft: "1rem",
+                                                        paddingRight: "1rem",
                                                     }}
                                                 >
-                                                    <div
+                                                    <Tarjeta_Descargar_Producto
+                                                        titulo={items.titulo}
+                                                        urlDST={items.urlDST}
+                                                        urlEMB={items.titulo}
+                                                        tiempo={items.tiempo}
+                                                        Descargas={descargas}
+                                                        setDescargas={
+                                                            setDescargas
+                                                        }
                                                         key={index}
-                                                        className="relative w-full flex flex-col justify-between items-center gap-2 py-5 px-1 hover:bg-[#a8a8a8bd] h-[100px]"
-                                                    >
-                                                        <h1 className="top-0 left-0 absolute font-extrabold">
-                                                            Descargar
-                                                        </h1>
-                                                        {/* nombre de prodcuto */}
-                                                        <h1 className=" text-lg sm:text-2xl text-[var(--Texto-Color)] font-semibold">
-                                                            {items.titulo}
-                                                        </h1>
-                                                        <div className="w-full flex flex-row justify-center items-center gap-5">
-                                                            {/* boton de descarga */}
-                                                            <button
-                                                                className="button-Descarga"
-                                                                onClick={() => {
-                                                                    // Descarga el archivo utilizando el enlace
-                                                                    items.urlDST
-                                                                        ? (window.location.href =
-                                                                              items.urlDST)
-                                                                        : null;
-                                                                }}
-                                                            >
-                                                                <span className="button-content-Descarga">
-                                                                    .DST
-                                                                </span>
-                                                            </button>
-                                                            {/* boton de descarga */}
-                                                            <button
-                                                                className="button-Descarga"
-                                                                onClick={() => {
-                                                                    // Descarga el archivo utilizando el enlace
-                                                                    items.urlEMB
-                                                                        ? (window.location.href =
-                                                                              items.urlEMB)
-                                                                        : null;
-                                                                }}
-                                                            >
-                                                                <span className="button-content-Descarga">
-                                                                    .EMB
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
+                                                    />
                                                 </SwiperSlide>
                                             );
                                         })}
                                     </Swiper>
 
-                                    <h1 className=" text-rose-400 mt-3">
+                                    <h1 className=" text-rose-400">
                                         Atencion: Las descargas solo tienen una
                                         duracion de 1hs
                                     </h1>
@@ -269,3 +261,47 @@ export default function Ver_Descargas() {
         </div>
     );
 }
+
+// https://83f0-181-117-24-235.ngrok-free.app/?collection_id=1320557593&collection_status=approved&payment_id=1320557593&status=approved&external_reference=null&payment_type=credit_card&merchant_order_id=14798692134&preference_id=1512312240-ea714fa8-0cb8-4525-baac-5c1509257c6b&site_id=MLA&processing_mode=aggregator&merchant_account_id=null
+
+// <div
+//     key={index}
+//     className="relative w-full flex flex-col justify-between items-center gap-2 pb-5 px-1 hover:bg-[#a8a8a8bd] h-[100px] shadow-xl"
+// >
+//     <h1 className="top-0 left-0 absolute font-extrabold">Descargar</h1>
+//     <div className="top-0 right-0 absolute  text-[var(--Icono-Carrito)] text-[1.5rem] p-1">
+//         <IoShieldCheckmark />
+//     </div>
+
+//     <h1 className=" bottom-0 right-0 py-1 px-2 absolute font-extrabold text-rose-400">
+//         00:33:04hs
+//     </h1>
+
+//     {/* nombre de prodcuto */}
+//     <h1 className=" text-lg sm:text-2xl text-[var(--Texto-Color)] font-semibold">
+//         {items.titulo}
+//     </h1>
+
+//     <div className="w-full flex flex-row justify-center items-center gap-5">
+//         {/* boton de descarga */}
+//         <button
+//             className="button-Descarga"
+//             onClick={() => {
+//                 // Descarga el archivo utilizando el enlace
+//                 items.urlDST ? (window.location.href = items.urlDST) : null;
+//             }}
+//         >
+//             <span className="button-content-Descarga">.DST</span>
+//         </button>
+//         {/* boton de descarga */}
+//         <button
+//             className="button-Descarga"
+//             onClick={() => {
+//                 // Descarga el archivo utilizando el enlace
+//                 items.urlEMB ? (window.location.href = items.urlEMB) : null;
+//             }}
+//         >
+//             <span className="button-content-Descarga">.EMB</span>
+//         </button>
+//     </div>
+// </div>;
