@@ -26,7 +26,6 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { useLocalStorage } from "@/lib/hook/localStorage/hook";
 
 // icono check
-import { IoShieldCheckmark } from "react-icons/io5";
 import Tarjeta_Descargar_Producto from "../tarjetas/tarjeta-Descargar-Prodcuto";
 interface Descargas {
     titulo: string;
@@ -56,37 +55,72 @@ export default function Ver_Descargas() {
         setCantidad(descargas.length);
     }, [descargas, setCantidad]);
 
-    useEffect(() => {
-        // Obtengo el Estado y el numero de orden
-        if (!searchParams) return;
+    async function ComprobarOrdenPagada(n_orden: string): Promise<boolean> {
+        const { data: Orden, error } = await supabase
+            .from("Orden")
+            .select("*")
+            .eq("n_orden", `${n_orden}`);
 
-        // const urlparams = new URLSearchParams(window.location.search);
-        const urlparams = new URLSearchParams(searchParams);
-        const status = urlparams.get("status");
-        const n_orden = urlparams.get("preference_id");
-
-        //❌❌❌ Buscar la si la orden esta aprobada ? pero ya el stado me dice que esta aprobada 🤔🤔🤔 si porque si ponen la url status approved y id cualquiera entonces va a descar de nuevo cualqueir logo
-
-        if (status === "approved" && n_orden !== null) {
-            // Alerta
-            mostrarAlerta({
-                msj: "Pago Aprobado",
-                severity: SeverityType.Success,
-            });
-            // Descagar archivos
-            Descargarall(carrito);
-            // Eliminar Carrito
-            setCarrito([]);
-
-            // Elimina la url y los parametros
-            replace(`${pathname}`);
-        } else if (status === "failure") {
-            // Alerta
-            mostrarAlerta({
-                msj: "Pago Fallido",
-                severity: SeverityType.Error,
-            });
+        if (error) {
+            console.log(["Error", error]);
+            return false;
         }
+
+        // Verificar si la orden está pagada o no
+        if (Orden && Orden.length > 0) {
+            const estadoOrden = Orden[0].estado;
+            return estadoOrden;
+        }
+        return false;
+    }
+
+    useEffect(() => {
+        async function Descargas() {
+            // Obtengo el Estado y el numero de orden
+            if (!searchParams) return;
+
+            // const urlparams = new URLSearchParams(window.location.search);
+            const urlparams = new URLSearchParams(searchParams);
+            console.log("URL: ");
+            console.log(urlparams);
+
+            const status = urlparams.get("status");
+            const n_orden = urlparams.get("merchant_order_id");
+
+            if (status === "approved" && n_orden !== null) {
+                // Buscar la si la orden esta aprobada
+
+                if (await ComprobarOrdenPagada(n_orden)) {
+                    // Alerta
+                    mostrarAlerta({
+                        msj: "Pago Aprobado",
+                        severity: SeverityType.Success,
+                    });
+
+                    // Descagar archivos
+                    Descargarall(carrito);
+                    // Eliminar Carrito
+                    setCarrito([]);
+
+                    // Elimina la url y los parametros
+                    replace(`${pathname}`);
+                } else {
+                    mostrarAlerta({
+                        msj: `Orden en DB Estado inpaga: ${n_orden}`,
+                        severity: SeverityType.Error,
+                    });
+                    return;
+                }
+            } else if (status === "failure") {
+                // Alerta
+                mostrarAlerta({
+                    msj: "Pago Fallido",
+                    severity: SeverityType.Error,
+                });
+            }
+        }
+
+        Descargas();
     }, []);
 
     const Descargarall = async (carrito: producto[]) => {
@@ -229,7 +263,7 @@ export default function Ver_Descargas() {
                                                     <Tarjeta_Descargar_Producto
                                                         titulo={items.titulo}
                                                         urlDST={items.urlDST}
-                                                        urlEMB={items.titulo}
+                                                        urlEMB={items.urlEMB}
                                                         tiempo={items.tiempo}
                                                         Descargas={descargas}
                                                         setDescargas={
@@ -261,47 +295,3 @@ export default function Ver_Descargas() {
         </div>
     );
 }
-
-// https://83f0-181-117-24-235.ngrok-free.app/?collection_id=1320557593&collection_status=approved&payment_id=1320557593&status=approved&external_reference=null&payment_type=credit_card&merchant_order_id=14798692134&preference_id=1512312240-ea714fa8-0cb8-4525-baac-5c1509257c6b&site_id=MLA&processing_mode=aggregator&merchant_account_id=null
-
-// <div
-//     key={index}
-//     className="relative w-full flex flex-col justify-between items-center gap-2 pb-5 px-1 hover:bg-[#a8a8a8bd] h-[100px] shadow-xl"
-// >
-//     <h1 className="top-0 left-0 absolute font-extrabold">Descargar</h1>
-//     <div className="top-0 right-0 absolute  text-[var(--Icono-Carrito)] text-[1.5rem] p-1">
-//         <IoShieldCheckmark />
-//     </div>
-
-//     <h1 className=" bottom-0 right-0 py-1 px-2 absolute font-extrabold text-rose-400">
-//         00:33:04hs
-//     </h1>
-
-//     {/* nombre de prodcuto */}
-//     <h1 className=" text-lg sm:text-2xl text-[var(--Texto-Color)] font-semibold">
-//         {items.titulo}
-//     </h1>
-
-//     <div className="w-full flex flex-row justify-center items-center gap-5">
-//         {/* boton de descarga */}
-//         <button
-//             className="button-Descarga"
-//             onClick={() => {
-//                 // Descarga el archivo utilizando el enlace
-//                 items.urlDST ? (window.location.href = items.urlDST) : null;
-//             }}
-//         >
-//             <span className="button-content-Descarga">.DST</span>
-//         </button>
-//         {/* boton de descarga */}
-//         <button
-//             className="button-Descarga"
-//             onClick={() => {
-//                 // Descarga el archivo utilizando el enlace
-//                 items.urlEMB ? (window.location.href = items.urlEMB) : null;
-//             }}
-//         >
-//             <span className="button-content-Descarga">.EMB</span>
-//         </button>
-//     </div>
-// </div>;

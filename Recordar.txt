@@ -16,3 +16,318 @@ collector_id: 1512312240
 
 "home -> URL de respuesta de mercado pago"
 https://cd23-181-117-24-235.ngrok-free.app/?collection_id=1316549634&collection_status=approved&payment_id=1316549634&status=approved&external_reference=null&payment_type=credit_card&merchant_order_id=14770478454&preference_id=1512312240-98be0a10-3b30-4f40-9dbc-52b2e1a3947a&site_id=MLA&processing_mode=aggregator&merchant_account_id=null
+
+
+
+                                                                                                                Api Checkout:
+  mercadopagoResponse {
+    body: {
+      additional_info: '',
+      auto_return: 'approved',
+      back_urls: {
+        failure: 'https://362a-181-117-24-235.ngrok-free.app',
+        pending: 'https://362a-181-117-24-235.ngrok-free.app',
+        success: 'https://362a-181-117-24-235.ngrok-free.app'
+      },
+      binary_mode: false,
+      client_id: '6578981563787536',
+      collector_id: 1512312240, 😭😭😢 "ES SIEMPRE EL MISMO - TODAS LAS COMPRAS -> es el Id del vendedor"
+      coupon_code: null,
+      coupon_labels: null,
+      date_created: '2024-01-12T14:05:16.456-04:00',
+      date_of_expiration: null,
+      expiration_date_from: null,
+      expiration_date_to: null,
+      expires: false,
+      external_reference: '',
+      id: '1512312240-c860be3a-1daf-46e6-b3e7-81f97f416a99', 😭😭😢 "CHECKOUT y HOME"
+      init_point: 
+        'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1512312240-c860be3a-1daf-46e6-b3e7-81f97f416a99',
+      internal_metadata: null,
+      items: [
+        {
+          id: '5dc375d9-1122-4524-b66c-c4bab71e8f6f',
+          category_id: 'c2112c5b-5166-4ac5-bb99-964bf855fb6f',
+          currency_id: 'ARS',
+          description: 'Egresados 2022',
+          picture_url: 
+            'https://http2.mlstatic.com/D_NQ_NP_692482-MLA73869589720_012024-F.jpg',
+          title: 'Egresados 2022',
+          quantity: 1,
+          unit_price: 1100
+        }
+      ],
+      marketplace: 'NONE',
+      marketplace_fee: 0,
+      metadata: {},
+      notification_url: 'https://362a-181-117-24-235.ngrok-free.app/api/notificar',
+      operation_type: 'regular_payment',
+      payer: {
+        phone: { area_code: '', number: '' },
+        address: { zip_code: '', street_name: '', street_number: null },
+        email: '',
+        identification: { number: '', type: '' },
+        name: '',
+        surname: '',
+        date_created: null,
+        last_purchase: null
+      },
+      payment_methods: {
+        default_card_id: null,
+        default_payment_method_id: null,
+        excluded_payment_methods: [ { id: '' } ],
+        excluded_payment_types: [ { id: '' } ],
+        installments: null,
+        default_installments: null
+      },
+      processing_modes: null,
+      product_id: null,
+      redirect_urls: { failure: '', pending: '', success: '' },
+      sandbox_init_point: 
+        'https://sandbox.mercadopago.com.ar/checkout/v1/redirect?pref_id=1512312240-c860be3a-1daf-46e6-b3e7-81f97f416a99',
+      site_id: 'MLA',
+      shipments: {
+        default_shipping_method: null,
+        receiver_address: {
+          zip_code: '',
+          street_name: '',
+          street_number: null,
+          floor: '',
+          apartment: '',
+          city_name: null,
+          state_name: null,
+          country_name: null
+        }
+      },
+      total_amount: null,
+      last_updated: null
+    },
+    response: {
+      additional_info: '',
+      auto_return: 'approved',
+      back_urls: {
+        failure: 'https://362a-181-117-24-235.ngrok-free.app',
+        pending: 'https://362a-181-117-24-235.ngrok-free.app',
+        success: 'https://362a-181-117-24-235.ngrok-free.app'
+      },
+      binary_mode: false,
+      client_id: '6578981563787536',
+      collector_id: 1512312240,
+      coupon_code: null,
+      coupon_labels: null,
+      date_created: '2024-01-12T14:05:16.456-04:00',
+      date_of_expiration: null,
+      expiration_date_from: null,
+      expiration_date_to: null,
+      expires: false,
+      external_reference: '',
+      id: '1512312240-c860be3a-1daf-46e6-b3e7-81f97f416a99',
+      init_point: 
+        'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1512312240-c860be3a-1daf-46e6-b3e7-81f97f416a99',
+      internal_metadata: null,
+      items: [
+        {
+          id: '5dc375d9-1122-4524-b66c-c4bab71e8f6f',
+          category_id: 'c2112c5b-5166-4ac5-bb99-964bf855fb6f',
+          currency_id: 'ARS',
+          description: 'Egresados 2022',
+          picture_url: 
+            'https://http2.mlstatic.com/D_NQ_NP_692482-MLA73869589720_012024-F.jpg',
+          title: 'Egresados 2022',
+          quantity: 1,
+          unit_price: 1100
+        }
+      ],
+      marketplace: 'NONE',
+      marketplace_fee: 0,
+      metadata: {},
+      notification_url: 'https://362a-181-117-24-235.ngrok-free.app/api/notificar',
+      operation_type: 'regular_payment',
+      payer: {
+        phone: { area_code: '', number: '' },
+        address: { zip_code: '', street_name: '', street_number: null },
+        email: '',
+        identification: { number: '', type: '' },
+        name: '',
+        surname: '',
+        date_created: null,
+        last_purchase: null
+      },
+      payment_methods: {
+        default_card_id: null,
+        default_payment_method_id: null,
+        excluded_payment_methods: [ { id: '' } ],
+        excluded_payment_types: [ { id: '' } ],
+        installments: null,
+        default_installments: null
+      },
+      processing_modes: null,
+      product_id: null,
+      redirect_urls: { failure: '', pending: '', success: '' },
+      sandbox_init_point: 
+        'https://sandbox.mercadopago.com.ar/checkout/v1/redirect?pref_id=1512312240-c860be3a-1daf-46e6-b3e7-81f97f416a99',
+      site_id: 'MLA',
+      shipments: {
+        default_shipping_method: null,
+        receiver_address: {
+          zip_code: '',
+          street_name: '',
+          street_number: null,
+          floor: '',
+          apartment: '',
+          city_name: null,
+          state_name: null,
+          country_name: null
+        }
+      },
+      total_amount: null,
+      last_updated: null
+    },
+    status: 201,
+    idempotency: undefined,
+    pagination: undefined
+  }
+
+                                                                                                                    Api Notificar:
+
+{
+    accounts_info: null,
+    acquirer_reconciliation: [],
+    additional_info: {
+      authentication_code: null,
+      available_balance: null,
+      ip_address: '181.117.24.235',
+      items: [
+        {
+          category_id: 'c2112c5b-5166-4ac5-bb99-964bf855fb6f',
+          description: 'Egresados 2022',
+          id: '5dc375d9-1122-4524-b66c-c4bab71e8f6f',
+          picture_url: 
+            'https://http2.mlstatic.com/D_NQ_NP_692482-MLA73869589720_012024-F.jpg',
+          quantity: '1',
+          title: 'Egresados 2022',
+          unit_price: '1100'
+        }
+      ],
+      nsu_processadora: null
+    },
+    authorization_code: '229549003',
+    binary_mode: false,
+    brand_id: null,
+    build_version: '3.33.1',
+    call_for_authorize_id: null,
+    captured: true,
+    card: {
+      cardholder: {
+        identification: { number: '12345678', type: 'DNI' },
+        name: 'boschi albano jose'
+      },
+      date_created: '2024-01-12T14:06:21.000-04:00',
+      date_last_updated: '2024-01-12T14:06:21.000-04:00',
+      expiration_month: 11,
+      expiration_year: 2025,
+      first_six_digits: '503175',
+      id: null,
+      last_four_digits: '0604'
+    },
+    charges_details: [
+      {
+        accounts: { from: 'collector', to: 'mp' },
+        amounts: { original: 45.1, refunded: 0 },
+        client_id: 0,
+        date_created: '2024-01-12T14:06:21.000-04:00',
+        id: '1316609574-001',
+        last_updated: '2024-01-12T14:06:21.000-04:00',
+        metadata: {},
+        name: 'mercadopago_fee',
+        refund_charges: [],
+        reserve_id: null,
+        type: 'fee'
+      }
+    ],
+    collector_id: 1512312240,
+    corporation_id: null,
+    counter_currency: null,
+    coupon_amount: 0,
+    currency_id: 'ARS',
+    date_approved: '2024-01-12T14:06:21.212-04:00',
+    date_created: '2024-01-12T14:06:21.023-04:00',
+    date_last_updated: '2024-01-12T14:06:21.212-04:00',
+    date_of_expiration: null,
+    deduction_schema: null,
+    description: 'Egresados 2022',
+    differential_pricing_id: null,
+    external_reference: null,
+    fee_details: [ { amount: 45.1, fee_payer: 'collector', type: 'mercadopago_fee' } ],
+    financing_group: null,
+    id: 1316609574, 😭😭😢 " HOME Y NOTIFICAR" ✔
+    installments: 1,
+    integrator_id: null,
+    issuer_id: '3',
+    live_mode: false,
+    marketplace_owner: null,
+    merchant_account_id: null,
+    merchant_number: null,
+    metadata: {},
+    money_release_date: '2024-01-30T14:06:21.212-04:00',
+    money_release_schema: null,
+    money_release_status: 'pending',
+    notification_url: 'https://362a-181-117-24-235.ngrok-free.app/api/notificar',
+    operation_type: 'regular_payment',
+    order: { 
+        id: '14880637689', 😭😭😢 " HOME Y NOTIFICAR" ✔  ==> CREAR LA ORDEN (ORDER.ID) Y GUARDARLA EN DB, LUEGO EN HOME VERIFICAR QUE ESTE PAGADA.(merchant_order_id)
+        type: 'mercadopago' 
+    },
+    payer: {
+      identification: { number: '32659430', type: 'DNI' },
+      entity_type: null,
+      phone: { number: null, extension: null, area_code: null },
+      last_name: null,
+      id: '1627038462',
+      type: null,
+      first_name: null,
+      email: 'test_user_80507629@testuser.com'
+    },
+    payment_method: {
+      data: { routing_data: { merchant_account_id: '5924780738444' } },
+      id: 'master',
+      issuer_id: '3',
+      type: 'credit_card'
+    },
+    payment_method_id: 'master',
+    payment_type_id: 'credit_card',
+    platform_id: null,
+    point_of_interaction: {
+      business_info: { branch: null, sub_unit: 'checkout_pro', unit: 'online_payments' },
+      transaction_data: { e2e_id: null },
+      type: 'CHECKOUT'
+    },
+    pos_id: null,
+    processing_mode: 'aggregator',
+    refunds: [],
+    shipping_amount: 0,
+    sponsor_id: null,
+    statement_descriptor: null,
+    status: 'approved',
+    status_detail: 'accredited',
+    store_id: null,
+    tags: null,
+    taxes_amount: 0,
+    transaction_amount: 1100,
+    transaction_amount_refunded: 0,
+    transaction_details: {
+      acquirer_reference: null,
+      external_resource_url: null,
+      financial_institution: null,
+      installment_amount: 1100,
+      net_received_amount: 1054.9,
+      overpaid_amount: 0,
+      payable_deferral_period: null,
+      payment_method_reference_id: null,
+      total_paid_amount: 1100
+    }
+  }
+
+                                                                                                            Home - back urls:
+
+https://362a-181-117-24-235.ngrok-free.app/?collection_id=1316609574&collection_status=approved&payment_id=1316609574&status=approved&external_reference=null&payment_type=credit_card&merchant_order_id=14880637689&preference_id=1512312240-c860be3a-1daf-46e6-b3e7-81f97f416a99&site_id=MLA&processing_mode=aggregator&merchant_account_id=null

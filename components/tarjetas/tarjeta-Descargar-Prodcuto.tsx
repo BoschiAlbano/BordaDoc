@@ -154,6 +154,7 @@ export default function Tarjeta_Descargar_Producto({
                     className="button-Descarga"
                     onClick={() => {
                         // Descarga el archivo utilizando el enlace
+                        console.log(urlDST);
                         urlDST ? (window.location.href = urlDST) : null;
                     }}
                 >
@@ -164,6 +165,7 @@ export default function Tarjeta_Descargar_Producto({
                     className="button-Descarga"
                     onClick={() => {
                         // Descarga el archivo utilizando el enlace
+                        console.log(urlEMB);
                         urlEMB ? (window.location.href = urlEMB) : null;
                     }}
                 >

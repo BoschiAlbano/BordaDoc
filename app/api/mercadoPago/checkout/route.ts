@@ -1,14 +1,12 @@
 // import { NextResponse, NextRequest } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/servidor";
 
-import { NextApiResponse } from "next";
-import { detalle_orden, orden, producto } from "@/lib/definiciones";
+import { producto } from "@/lib/definiciones";
 import mercadopago from "mercadopago";
 import {
     CreatePreferencePayload,
     PreferenceItem,
 } from "mercadopago/models/preferences/create-payload.model";
-import { v4 as uuidv4 } from "uuid";
 import { NextResponse } from "next/server";
 
 // export async function POST(req: Request, res: Response) {
@@ -66,24 +64,13 @@ export async function POST(req: Request, res: Response) {
         // Crear Preferencia
         const _preferencia = await CrearPreferencia(productos, productosDB);
         // 🚸 si se generan preferencias y no se usan entonces el id de la preferencia es el mismo.
-        console.log([
-            _preferencia.url,
-            _preferencia.PreferenciaId,
-            _preferencia.productosOriginales,
-        ]);
-
-        // Creamos la Orden y el detalle en supabase
-        CrearOrdenyDetalle(
-            _preferencia.productosOriginales,
-            _preferencia.PreferenciaId
-        );
+        console.log([_preferencia.url]);
 
         // devolvelmos status 200
         return NextResponse.json(
             {
                 message: "Ok",
                 url: _preferencia.url,
-                n_orden: _preferencia.PreferenciaId,
             },
             { status: 200 }
         );
@@ -152,67 +139,6 @@ async function CrearPreferencia(
     const URL_Desarrollo = response.body.sandbox_init_point;
     console.log([URL_Desarrollo, URL_Produccion]);
 
-    // ID de la preferencia
-    const PreferenciaId = response.body.collector_id;
-    console.log(PreferenciaId);
-
     // ❗❗❗ Cambiar por url de produccion
-    return { url: URL_Produccion, PreferenciaId, productosOriginales };
-}
-
-async function CrearOrdenyDetalle(
-    productosOriginales: producto[],
-    PreferenciaId: string
-) {
-    // 1 - Generar una orden de compra.
-    const _orden: orden = {
-        estado: false,
-        n_orden: PreferenciaId,
-    };
-
-    // 2 - Guradar la orden o actualizar la orden y los detalles
-
-    // Buscar orden con esa preferenciaId
-    // 4 - Eliminar y Eliminar detalles de orden si existen, Esta en cascada SQL.
-    const { error: er } = await supabaseAdmin
-        .from("Orden")
-        .delete()
-        .eq("n_orden", PreferenciaId);
-
-    // Insertar
-    const { data: orden, error } = await supabaseAdmin
-        .from("Orden")
-        .insert([_orden])
-        .select();
-
-    if (error) {
-        // throw new Error(error.message);
-        return NextResponse.json({ message: error.message }, { status: 400 });
-    }
-
-    const _TypeOrden: orden | any[] | null = orden;
-
-    // 3.3 - Crear Detalle de orden
-    const Detalles_Orden: detalle_orden[] = [];
-
-    productosOriginales.forEach((produc: producto) => {
-        Detalles_Orden.push({
-            // Crear detalle despues orden - n-orden alazar
-            precio: produc.precio,
-            productoId: produc.id,
-            titulo: produc.titulo,
-            ordenId: _TypeOrden[0].id,
-        });
-    });
-
-    // 5 - Guardamos los detalles
-    const { data: Detalle_de_Orden, error: err } = await supabaseAdmin
-        .from("Detalle_de_Orden")
-        .insert(Detalles_Orden)
-        .select();
-
-    if (err) {
-        console.log(err);
-        return NextResponse.json({ message: err.message }, { status: 400 });
-    }
+    return { url: URL_Produccion };
 }
